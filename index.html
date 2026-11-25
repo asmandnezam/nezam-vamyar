@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1420">
+<title>نظام وام‌یار</title>
+<style>
+:root{--bg:#0a1420;--panel:rgba(255,255,255,.075);--line:rgba(255,255,255,.13);--text:#f4f7fb;--muted:#9eacbd;--blue:#37a8ff;--gold:#d7b66a}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17324a 0,transparent 38%),radial-gradient(ellipse at 100% 60%,#14263b 0,transparent 40%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:18px 16px 100px}
+.top{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 22px}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(215,182,106,.3),rgba(55,168,255,.12));border:1px solid rgba(215,182,106,.55);font-size:23px;box-shadow:0 8px 30px #0005}
+h1{font-size:18px;margin:0 0 5px}.sub{color:var(--muted);font-size:11px}.avatar{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:11px;color:var(--text)}
+.hero{padding:22px;border-radius:26px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(47,111,157,.28),rgba(255,255,255,.055));box-shadow:0 18px 50px #0004;backdrop-filter:blur(22px);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#38aaff20;filter:blur(25px);left:-50px;top:-65px}
+.eyebrow{color:var(--gold);font-size:11px;margin-bottom:10px}.hero h2{font-size:23px;line-height:1.7;margin:0 0 7px}.hero p{font-size:12px;line-height:2;color:#c1ccda;margin:0 0 16px}
+.actions{display:flex;gap:10px}.btn{border:1px solid var(--line);border-radius:15px;padding:13px 15px;color:white;background:rgba(255,255,255,.09);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 #ffffff18,0 8px 24px #0003;flex:1;font-weight:bold;font-size:13px;transition:.2s}.btn:active{transform:scale(.97)}.primary{background:linear-gradient(135deg,#248bd0aa,#2766a5aa);border-color:#65bdff66}.gold{background:linear-gradient(135deg,#b58d42aa,#80612daa);border-color:#e4c77a66}
+.section{display:flex;align-items:center;justify-content:space-between;margin:25px 2px 12px}.section h3{font-size:15px;margin:0}.section small{color:var(--muted);font-size:11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{padding:16px 13px;border:1px solid var(--line);border-radius:19px;background:var(--panel);backdrop-filter:blur(18px);box-shadow:0 10px 28px #0002;min-height:105px;text-align:right;color:var(--text)}.tile .ico{font-size:22px;display:block;margin-bottom:11px}.tile b{font-size:13px}.tile small{display:block;color:var(--muted);font-size:10px;margin-top:6px}
+.notice{border:1px solid rgba(215,182,106,.25);background:rgba(215,182,106,.07);border-radius:17px;padding:13px;color:#dfd0aa;font-size:11px;line-height:2;margin-top:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:15px;margin-bottom:11px;backdrop-filter:blur(18px)}
+.listing-head{display:flex;justify-content:space-between;gap:10px}.tag{font-size:10px;padding:6px 9px;border-radius:20px;background:#2d9d7140;color:#91e0b7;border:1px solid #5fc99a55;height:max-content}
+.meta{display:flex;gap:12px;color:var(--muted);font-size:10px;margin-top:12px;flex-wrap:wrap}
+.page{display:none}.page.active{display:block}.back{background:none;border:0;color:#8dcfff;padding:0 0 16px}
+.field{margin:13px 0}.field label{display:block;color:#c8d2df;font-size:12px;margin-bottom:8px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:rgba(0,0,0,.18);color:white;border-radius:13px;padding:13px;outline:none}.field select option{background:#132235}.field textarea{min-height:90px;resize:vertical}
+.bottom{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;gap:6px;background:rgba(8,17,28,.78);backdrop-filter:blur(24px);border-top:1px solid var(--line);z-index:5}.nav{flex:1;border:0;border-radius:14px;padding:9px 3px;background:transparent;color:var(--muted);font-size:10px}.nav span{display:block;font-size:18px;margin-bottom:4px}.nav.active{background:rgba(55,168,255,.16);color:#9bd7ff;border:1px solid #55b8ff35}
+.toast{position:fixed;bottom:88px;left:18px;right:18px;max-width:480px;margin:auto;background:#1d3449;border:1px solid #ffffff2a;padding:13px;border-radius:14px;text-align:center;font-size:12px;display:none;z-index:9}
+.empty{color:var(--muted);font-size:12px;line-height:2;text-align:center;padding:22px}
+@media(min-width:520px){body{padding:18px 0}.app{border:1px solid #ffffff12;border-radius:28px;overflow:hidden}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="logo">🏦</div><div><h1>نظام وام‌یار</h1><div class="sub">سامانه هوشمند درخواست و آگهی تسهیلات</div></div></div>
+ <button class="avatar" onclick="toast('پروفایل کاربران در مرحله بعد فعال می‌شود')">♙</button>
+</header>
+
+<main id="home" class="page active">
+ <section class="hero">
+  <div class="eyebrow">NEZAM VAMYAR · نسخه نمایشی</div>
+  <h2>راه ساده‌تر برای<br>پیگیری درخواست وام</h2>
+  <p>درخواست خرید یا فروش امتیاز تسهیلات را ثبت کن و آگهی‌های منتشرشده را بررسی کن.</p>
+  <div class="actions"><button class="btn primary" onclick="showPage('buy')">درخواست خرید</button><button class="btn gold" onclick="showPage('sell')">ثبت آگهی فروش</button></div>
+ </section>
+ <div class="section"><h3>خدمات وام‌یار</h3><small>انتخاب خدمت</small></div>
+ <div class="grid">
+  <button class="tile" onclick="showPage('buy')"><span class="ico">🔎</span><b>جست‌وجوی امتیاز</b><small>مشاهده و بررسی آگهی‌ها</small></button>
+  <button class="tile" onclick="showPage('sell')"><span class="ico">📝</span><b>ثبت آگهی فروش</b><small>ثبت درخواست برای بررسی</small></button>
+  <button class="tile" onclick="toast('بخش ازدواج در نسخه بعدی تکمیل می‌شود')"><span class="ico">💍</span><b>وام ازدواج</b><small>اطلاعات و درخواست‌ها</small></button>
+  <button class="tile" onclick="toast('بخش فرزندآوری در نسخه بعدی تکمیل می‌شود')"><span class="ico">👶</span><b>وام فرزندآوری</b><small>اطلاعات و درخواست‌ها</small></button>
+ </div>
+ <div class="section"><h3>آخرین آگهی‌ها</h3><small>نمونه نمایشی</small></div>
+ <div id="homeListings"><div class="empty">هنوز آگهی تأییدشده‌ای ثبت نشده است.</div></div>
+ <div class="notice">⚠️ این نسخه صرفاً نمونه اولیه است. انتشار آگهی یا انجام معامله به معنی تأیید بانک یا تضمین انتقال امتیاز نیست. شرایط هر تسهیلات باید از بانک مربوطه استعلام شود.</div>
+</main>
+
+<section id="buy" class="page">
+ <button class="back" onclick="showPage('home')">← بازگشت</button><h2>درخواست خرید امتیاز</h2><p class="sub">مشخصات موردنظر را وارد کن.</p>
+ <form onsubmit="submitRequest(event,'خرید')">
+  <div class="field"><label>نوع تسهیلات</label><select required><option value="">انتخاب کن</option><option>وام ازدواج</option><option>وام فرزندآوری</option><option>سایر تسهیلات (پس از بررسی)</option></select></div>
+  <div class="field"><label>بانک موردنظر</label><input required placeholder="مثلاً بانک ملی"></div>
+  <div class="field"><label>استان / شهر</label><input required placeholder="مثلاً تهران"></div>
+  <div class="field"><label>توضیحات و شرایط مدنظر</label><textarea placeholder="جزئیات درخواست..."></textarea></div>
+  <button class="btn primary" type="submit">ثبت درخواست آزمایشی</button>
+ </form>
+</section>
+
+<section id="sell" class="page">
+ <button class="back" onclick="showPage('home')">← بازگشت</button><h2>ثبت آگهی فروش</h2><p class="sub">آگهی ابتدا باید توسط مدیریت بررسی شود.</p>
+ <form onsubmit="submitRequest(event,'فروش')">
+  <div class="field"><label>نوع تسهیلات</label><select required><option value="">انتخاب کن</option><option>وام ازدواج</option><option>وام فرزندآوری</option><option>سایر تسهیلات (پس از بررسی)</option></select></div>
+  <div class="field"><label>بانک</label><input required placeholder="نام بانک"></div>
+  <div class="field"><label>استان / شهر</label><input required placeholder="محل ارائه خدمت"></div>
+  <div class="field"><label>توضیحات</label><textarea required placeholder="شرایط و توضیحات آگهی..."></textarea></div>
+  <button class="btn gold" type="submit">ارسال برای بررسی آزمایشی</button>
+ </form>
+</section>
+
+<section id="ads" class="page">
+ <h2>آگهی‌ها</h2><p class="sub">آگهی‌های نمونه پس از تأیید مدیریت در این بخش نمایش داده می‌شوند.</p>
+ <div id="allListings"><div class="empty">در حال حاضر آگهی تأییدشده‌ای وجود ندارد.</div></div>
+</section>
+<section id="support" class="page">
+ <h2>پشتیبانی</h2><div class="card"><b>ارتباط با مدیریت</b><p class="sub" style="line-height:2">برای پیگیری درخواست یا گزارش مشکل، در نسخه نهایی از مسیر پشتیبانی با مدیریت ارتباط می‌گیری.</p><button class="btn primary" onclick="toast('اتصال پشتیبانی در مرحله بعد راه‌اندازی می‌شود')">درخواست پشتیبانی</button></div>
+ <div class="notice">پیش از هرگونه پرداخت یا توافق، هویت طرف مقابل و امکان قانونی انتقال تسهیلات را از مراجع و بانک مربوطه بررسی کن.</div>
+</section>
+</div>
+<nav class="bottom">
+ <button class="nav active" data-page="home" onclick="showPage('home')"><span>⌂</span>خانه</button>
+ <button class="nav" data-page="buy" onclick="showPage('buy')"><span>🔎</span>خرید</button>
+ <button class="nav" data-page="sell" onclick="showPage('sell')"><span>＋</span>فروش</button>
+ <button class="nav" data-page="ads" onclick="showPage('ads')"><span>▤</span>آگهی‌ها</button>
+ <button class="nav" data-page="support" onclick="showPage('support')"><span>☏</span>پشتیبانی</button>
+</nav>
+<div id="toast" class="toast"></div>
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));window.scrollTo(0,0)}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.style.display='none',2800)}
+function submitRequest(e,type){e.preventDefault();toast('درخواست '+type+' در این نسخه فقط به‌صورت نمایشی ثبت شد؛ اتصال پایگاه داده در مرحله بعد انجام می‌شود.');e.target.reset()}
+</script>
+</body>
+</html>
